@@ -1,5 +1,5 @@
 export const AUTHOR = {
   name: "Siddhartha Karre",
-  linkedin: "https://linkedin.com/in/your-profile",
-  github: "https://github.com/your-username",
+  linkedin: "https://www.linkedin.com/in/siddhartha-karre",
+  github: "https://github.com/Siddhartha-karre",
 };
