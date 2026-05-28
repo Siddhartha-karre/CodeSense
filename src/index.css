@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-app-bg: var(--app-bg);
+  --color-app-surface: var(--app-surface);
+  --color-app-border: var(--app-border);
+  --color-app-text: var(--app-text);
+  --color-app-muted: var(--app-muted);
+  --color-app-accent: var(--app-accent);
+  --color-app-accent-2: var(--app-accent-2);
+  --color-app-success: var(--app-success);
+  --color-app-error: var(--app-error);
+  --color-app-code-bg: var(--app-code-bg);
+  --color-app-code-text: var(--app-code-text);
+  --color-app-markdown: var(--app-markdown);
+}
+
+/* Light theme (default) */
+:root {
+  --app-bg: #f5f5f8;
+  --app-surface: #ffffff;
+  --app-border: #e0e0ea;
+  --app-text: #1a1a28;
+  --app-muted: #6b6b8a;
+  --app-accent: #6b5ce7;
+  --app-accent-2: #e8924f;
+  --app-success: #2db87a;
+  --app-error: #e05252;
+  --app-code-bg: #f0f0f5;
+  --app-code-text: #3d4f66;
+  --app-markdown: #3a3a52;
+}
+
+/* Dark theme */
+.dark {
+  --app-bg: #0a0a0f;
+  --app-surface: #111118;
+  --app-border: #1e1e2e;
+  --app-text: #e8e8f0;
+  --app-muted: #5a5a7a;
+  --app-accent: #7c6af7;
+  --app-accent-2: #f7a26a;
+  --app-success: #6af7a2;
+  --app-error: #f76a6a;
+  --app-code-bg: #0d0d14;
+  --app-code-text: #a8b8d0;
+  --app-markdown: #c8c8de;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-app-bg font-sans text-app-text antialiased;
+  }
+}
+
+/* Markdown output — nested selectors not practical in JSX utilities */
+@layer components {
+  .markdown h2 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--app-accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 22px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--app-border);
+  }
+
+  .markdown h2:first-child {
+    margin-top: 0;
+  }
+
+  .markdown p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--app-markdown);
+    margin-bottom: 12px;
+  }
+
+  .markdown ul,
+  .markdown ol {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+
+  .markdown li {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: var(--app-markdown);
+    margin-bottom: 4px;
+  }
+
+  .markdown code {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    background: color-mix(in srgb, var(--app-accent) 12%, transparent);
+    color: var(--app-accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid color-mix(in srgb, var(--app-accent) 20%, transparent);
+  }
+
+  .markdown pre {
+    background: var(--app-code-bg);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    margin-bottom: 14px;
+  }
+
+  .markdown pre code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.8rem;
+    color: var(--app-code-text);
+  }
+
+  .markdown strong {
+    color: var(--app-text);
+    font-weight: 700;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--app-border);
+    border-radius: 2px;
+  }
+}
+
+/* Keyframe animations */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fade-text {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blink-cursor {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.dot-pulse {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+.dot-pulse:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot-pulse:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.loading-text {
+  animation: fade-text 1.5s ease-in-out infinite alternate;
+}
+
+.stream-cursor {
+  animation: blink-cursor 0.8s step-end infinite;
+}
