@@ -5,7 +5,7 @@
 ![CodeSense Preview](./src/assets/preview.png)
 
 ## 🚀 Live Demo
-👉 **[codesense.vercel.app](https://codesense.vercel.app)** ← replace with your actual Vercel URL
+👉 **[codesense.vercel.app](https://code-sense-seven-xi.vercel.app/)**
 
 ---
 
